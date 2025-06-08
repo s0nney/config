@@ -5,11 +5,11 @@ Some important dependencies:
 - cliphist
 - dunst
 - graphite-gtk-theme-black-normal-git
-- ttf-jetbrains-mono-nerd
 - lxappearance
 - pwvucontrol
 - pipewire (wireplumber + xdg-desktop-portal-hyprland)
 - swaylock-effects
 - thunar
+- ttf-jetbrains-mono-nerd
 - ttf-font-awesome
 
