@@ -1,0 +1,31 @@
+daemonize
+show-failed-attempts
+screenshots
+effect-blur=7x5
+effect-vignette=0.5:0.5
+indicator-radius=100
+indicator-thickness=10
+ignore-empty-password
+indicator
+clock
+timestr=%H:%M
+datestr=%a, %d %b %Y
+
+# Monochrome Color Scheme
+font=JetBrains Mono Nerd Font
+font-size=24
+text-color=ffffff
+inside-color=111111aa
+inside-clear-color=333333aa
+inside-ver-color=444444aa
+inside-wrong-color=222222aa
+ring-color=555555
+ring-clear-color=777777
+ring-ver-color=888888
+ring-wrong-color=333333
+line-color=00000000
+key-hl-color=ffffff
+bs-hl-color=aaaaaa
+separator-color=00000000
+
+
