@@ -3,6 +3,7 @@ My config files. Running arch btw.
 
 Some important dependencies:
 - cliphist
+- ctpv
 - dunst
 - graphite-gtk-theme-black-normal-git
 - lxappearance
