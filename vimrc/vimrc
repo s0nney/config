@@ -1,102 +1,71 @@
-" Enable UTF-8 encoding
 set encoding=utf-8
-
-"Color scheme
 colorscheme candle-grey-transparent
-
-" Font
 set guifont=Cascadia_Mono:h24
-
-" Enable 256 colors
 set t_Co=256
-
-" Enable syntax highlighting
 syntax on
-
-" Enable spell checking (English US)
 set spell spelllang=en_us
-
-" Highlight matching brackets
 set showmatch
-
-" Use Vim settings instead of Vi
 set nocompatible
-
-" Enable auto-indentation
 set autoindent
 set smartindent
-
-" Use relative line numbers (current line shows absolute number)
 set number relativenumber
-
-" Set tab width to 4 spaces
 set tabstop=4 shiftwidth=4
-
-" Use spaces instead of tabs
 set expandtab
-
-" Set maximum text width to 120 characters
 set textwidth=120
-
-" Highlight the current line and column
 set cursorcolumn
 set cursorline
-
-" Cursor location
 set ruler
+set cindent
+set cino=g0
+set wildmenu
+set showfulltag
+set hlsearch
+set incsearch
+set ignorecase smartcase
+set autoread
+set backspace=indent,eol,start
 
-" LSP plugin setup
-function InitLspPlugins()
-	call plug#begin()
+filetype indent on
+filetype plugin on
+filetype plugin indent on
 
+function! InitLspPlugins()
+    call plug#begin()
+    Plug 'tpope/vim-surround'
+    Plug 'preservim/nerdtree'
+    Plug 'junegunn/goyo.vim'
+    Plug 'jreybert/vimagit'
+    Plug 'vimwiki/vimwiki'
+    Plug 'vim-airline/vim-airline'
     Plug 'ap/vim-css-color'
-	Plug 'prabirshrestha/vim-lsp'
-	Plug 'mattn/vim-lsp-settings'
-
-	call plug#end()
+    Plug 'prabirshrestha/vim-lsp'
+    Plug 'mattn/vim-lsp-settings'
+    Plug 'dense-analysis/ale'
+    Plug 'rhysd/vim-lsp-ale'
+    call plug#end()
 endfunction
 
 call InitLspPlugins()
 
-function g:StartLsp()
-	function! OnLspBufferEnabled() abort
-	    setlocal omnifunc=lsp#complete
-        setlocal signcolumn=yes
-	endfunction
-	
-	augroup lsp_install
-	  au!
-      autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
-	augroup END
-
+function! OnLspBufferEnabled() abort
+    setlocal omnifunc=lsp#complete
+    setlocal signcolumn=yes
 endfunction
 
-" Terminal window settings
-set termwinsize=20x100
+augroup lsp_install
+    au!
+    autocmd User lsp_buffer_enabled call OnLspBufferEnabled()
+augroup END
 
-" C/C++ specific settings
-filetype plugin indent on
-set cindent                  " Enable automatic C indentation
-set cino=g0                  " C-indentation style
-autocmd FileType c,cpp,cc,go setlocal colorcolumn=120 colorcolumn=+2 " Set a vertical line at column 80
-highlight ColorColumn ctermbg=yellow guibg=#ffffff
+autocmd FileType c,cpp,cc,go setlocal colorcolumn=120
 
-" File tree
-filetype plugin on
-let g:netrw_banner = 0        " Disable the banner
-let g:netrw_liststyle = 3     " Use a tree-like listing style
-let g:netrw_browse_split = 4  " Open files in a new vertical split
-let g:netrw_altv = 1          " Open splits to the right
-let g:netrw_winsize = 25      " Set the width of the explorer window
+highlight ColorColumn ctermbg=grey guibg=#ffffff
+
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 4
+let g:netrw_altv = 1
+let g:netrw_winsize = 25
 
 nnoremap <leader>e :Explore<CR>
 nnoremap <leader>s :Sexplore<CR>
-
-" General coding settings
-set wildmenu                " Enable auto-completion in command mode
-set showfulltag             " Show the full tag path in auto-completion
-set hlsearch                " Highlight search results
-set incsearch               " Incremental search
-set ignorecase smartcase    " Case-insensitive search unless capital letters are used
-set autoread                " Automatically reload files when changed outside Vim
-set backspace=indent,eol,start  " Allow backspacing over indentation, line breaks and insertion start
